@@ -7,4 +7,5 @@ export type Route = {
 };
 
 export const routeGuard = (object: object) =>
-  "url" in object && "execute" in object;
+  "url" in object && typeof object.url === typeof URLPattern &&
+  "execute" in object;

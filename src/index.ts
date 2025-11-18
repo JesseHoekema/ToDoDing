@@ -3,8 +3,13 @@ import { Route, routeGuard } from "./types.ts";
 const routes: Route[] = [];
 const modules = await import("./routes.ts") as object;
 
-for (const [, module] of Object.entries(modules)) {
-  if (routeGuard(module)) routes.push(module as Route);
+for (const [name, module] of Object.entries(modules)) {
+  if (!routeGuard(module)) {
+    console.warn(`${name} is not a route`);
+    continue;
+  }
+
+  routes.push(module as Route);
 }
 
 export const route404: Route = {
@@ -47,6 +52,7 @@ async function handler(req: Request): Promise<Response> {
         const body = await req.text();
         console.log("Body:", body);
       }
+
       return await route.execute(req, match);
     }
   }
