@@ -47,7 +47,7 @@ export const todoIdRoute: Route = {
     if (!check) return returnStatus(405);
 
     for (const [key, value] of Object.entries(newData)) {
-      const query = "UPDATE todo SET " + key + " = ? WHERE id = ?";
+      const query = `UPDATE todo SET ${key} = ? WHERE id = ?`;
       db.prepare(query).get(value, id);
     }
 

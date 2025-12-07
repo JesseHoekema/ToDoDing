@@ -16,6 +16,8 @@ db.sql`
     title TEXT KEY,
     description TEXT KEY,
     status TEXT KEY,
-    postDate TEXT KEY
+    postDate TEXT KEY,
+    dueDate TEXT KEY,
+    url TEXT KEY
   );
 `;

@@ -24,16 +24,19 @@ export type ToDo = {
   description: string;
   status: "haven't started" | "active" | number;
   postDate: number;
+  dueDate?: number;
+  url?: string;
 };
 
 const todoExample: ToDo = {
   title: "string",
   description: "string",
   status: "haven't started",
-  postDate: 36,
+  postDate: 6,
+  dueDate: 36,
+  url: "string",
 };
 
-// object may not have any missing properties
 export const toDoGuard = (object: object): boolean => {
   for (const [key, value] of Object.entries(object)) {
     if (
@@ -41,20 +44,5 @@ export const toDoGuard = (object: object): boolean => {
     ) return false;
   }
 
-  for (const [key, value] of Object.entries(todoExample)) {
-    if (
-      !(isObjKey(key, object) && typeof object[key] === typeof value)
-    ) return false;
-  }
-  return true;
-};
-
-// object may have some missing properties
-export const partialToDoGuard = (object: object): boolean => {
-  for (const [key, value] of Object.entries(object)) {
-    if (
-      !(isObjKey(key, todoExample) && typeof todoExample[key] === typeof value)
-    ) return false;
-  }
   return true;
 };

@@ -1,6 +1,7 @@
 {
   "tasks": {
-    "dev": "deno -A src/index.ts"
+    "dev": "deno --watch -A src/index.ts",
+    "prod": "deno -A src/index.ts"
   },
   "imports": {
     "$src/": "./src/",
